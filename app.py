@@ -41,37 +41,37 @@ if st.button("Predict Placement Status"):
     else:
         st.error("❌ Student is likely NOT to be Placed.")
 
-    # Save to MySQL
-    try:
-        conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="123456789",
-            database="Prediction",
-            auth_plugin='mysql_native_password'  # Optional, use only if needed
-        )
-        cursor = conn.cursor()
+    # # Save to MySQL
+    # try:
+    #     conn = mysql.connector.connect(
+    #         host="localhost",
+    #         user="root",
+    #         password="123456789",
+    #         database="Prediction",
+    #         auth_plugin='mysql_native_password'  # Optional, use only if needed
+    #     )
+    #     cursor = conn.cursor()
 
-        insert_query = """
-            INSERT INTO PlacementResults (
-                CGPA, Internships, Projects, Workshops, AptitudeTestScore,
-                SoftSkillsRating, SSC_Marks, HSC_Marks,
-                ExtracurricularActivities, PlacementTraining, Prediction
-            )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """
+    #     insert_query = """
+    #         INSERT INTO PlacementResults (
+    #             CGPA, Internships, Projects, Workshops, AptitudeTestScore,
+    #             SoftSkillsRating, SSC_Marks, HSC_Marks,
+    #             ExtracurricularActivities, PlacementTraining, Prediction
+    #         )
+    #         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    #     """
 
-        values = (
-            CGPA, Internships, Projects, Workshops, AptitudeTestScore,
-            SoftSkillsRating, SSC_Marks, HSC_Marks,
-            ExtracurricularActivities, PlacementTraining, result
-        )
+    #     values = (
+    #         CGPA, Internships, Projects, Workshops, AptitudeTestScore,
+    #         SoftSkillsRating, SSC_Marks, HSC_Marks,
+    #         ExtracurricularActivities, PlacementTraining, result
+    #     )
 
-        cursor.execute(insert_query, values)
-        conn.commit()
-        st.info("📝 Data saved to database successfully.")
+    #     cursor.execute(insert_query, values)
+    #     conn.commit()
+    #     st.info("📝 Data saved to database successfully.")
 
-        cursor.close()
-        conn.close()
-    except mysql.connector.Error as err:
-        st.error(f"❗ MySQL Error: {err}")
+    #     cursor.close()
+    #     conn.close()
+    # except mysql.connector.Error as err:
+    #     st.error(f"❗ MySQL Error: {err}")
